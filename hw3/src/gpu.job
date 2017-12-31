@@ -1,0 +1,12 @@
+#!/bin/bash
+#SBATCH -n 1
+#SBATCH -p gpu_short
+#SBATCH -t 00:50:00
+#SBATCH -o pairwise2_%A.output
+#SBATCH -e pairwise2_%A.error
+
+module load python/2.7.11
+module load cuda/7.5.18
+module load cudnn/7.5-v5
+
+THEANO_FLAGS=mode=FAST_RUN,device=gpu,floatX=float32 python LambdaRankHW.py
